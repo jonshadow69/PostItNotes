@@ -1,0 +1,26 @@
+<% content_for :title, "View Note" %>
+
+<div class="notes_wrapper">
+  <div class="home">
+  <%= image_tag  "mypic.JPG", class: "show_img", alt: "Your avatar" , :size =>'150x140'%>
+    <div class="blog">
+      <div class="blog_c">
+        <span class="blog_title"><%= @note.title %></span>
+        <span class="blog_content"><%= @note.text %></span>
+      </div>
+      <div class="blog_actions">
+        <%= link_to "Edit", edit_note_path(@note.id), class: "sec_btn" %>
+        <%=
+          link_to "Delete",
+          delete_note_path(@note.id),
+          class: "sec_btn blog_dlt",
+          :data => { :confirm => "Are you sure??" },
+          :method => :delete
+        %>
+        <%= link_to "Back", notes_path, class: 'pri_btn' %>
+      </div>
+    </div>
+
+  </div>
+</div>
+© 2019 GitHub, Inc.

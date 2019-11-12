@@ -1,0 +1,54 @@
+<% content_for :title, "Notes" %>
+
+<div class="home">
+
+  <div class="home_info">
+    
+    <%= link_to "Create Note", new_note_path, class: "pri_btn" %>
+  </div>
+
+  <% unless @notes.empty? %>
+    <% @notes.each do |el| %>
+      <div class="note">
+        <div class="note_header common_header">
+         
+          <div class="note_h_left">
+            <span class="note_username">You..</span>
+            <span class='note_time'><%= el.created_at %></span>
+          </div>
+        </div>
+        <div class="note_title">
+          <span><%= el.title %></span>
+        </div>
+        <div class="note_content">
+         
+        </div>
+        <div class="note_actions">
+          <%= link_to "Edit", edit_note_path(el.id), class: "sec_btn" %>
+          <%=
+            link_to "Delete",
+            delete_note_path(el.id),
+            class: "sec_btn",
+            :data => { :confirm => "Are you sure??" },
+            :method => :delete
+          %>
+          <%= link_to "View", show_note_path(el.id), class: "pri_btn" %>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <% if @notes.empty? %>
+    <div class='home_last_mssg'>
+      <%= image_tag "large.jpg" %>
+      <span>No notes for you. Go ahead and create one!!</span>
+    </div>
+  <% end %>
+
+  <% unless @notes.empty? %>
+    <div class="page_end">
+      <span>Looks like you've reached the end</span>
+    </div>
+  <% end %>
+
+</div>
